@@ -65,14 +65,20 @@
         // No need to change anything ABOVE this line ^
 
         return (
+          // First bug identified: The code below was missing a JSX fragment tag that is supposed to surround the code within the return statement. This caused the code not render onto the webpage. Once the JSX fragment tags were added the code rendered.
+          // Second bug identified: The code rendered but the button "Click to draw a card" didn't have any functionality. This was because in the button tag the onClick event wasn't given a value resulting in it having no functionality. In the JSX syntax place the drawCard function within the empty {} to give the button its correct functionality.
+          // Third bug identified: Just like the previous bug the "Return Cards and Shuffle Deck" had no functionality. The reason for this was because the onClick event was spelled incorrectly and didn't not use the camelCase naming convention. Change onclick to onClick to give the button its correct functionality.
+          <>
           <h1>Draw a Card</h1>
-          <button onClick={}>
+          <button onClick={drawCard}>
             Click to Draw a Card
           </button>
-          <button onclick={shuffle}>
+          
+          <button onClick={shuffle}>
             Return Cards and Shuffle Deck
           </button>
           <div style={handStyles}>
+            
             {hand.map((card, index) => {
               return (
                 <div style={cardStyles} key={index}>
@@ -80,9 +86,12 @@
                 </div>
               )
             })}
+            
           </div>
+          </>
         )
       }
+    
 
       // No need to change anything below this line
 
